@@ -9,7 +9,7 @@ public class Strings {
 
 	/**
 	 * return true if str is null or empty string. otherwise false
-	 * @param str
+	 * @param str str
 	 * @return true if str is null or empty string. otherwise false
 	 */
 	public static boolean isNullOrEmpty(String str) {
@@ -18,7 +18,7 @@ public class Strings {
 
 	/**
 	 * return empty string if property is null. otherwise return property.
-	 * @param property
+	 * @param property property
 	 * @return empty string if property is null. otherwise return property.
 	 */
 	public static String nullToEmpty(String property) {
