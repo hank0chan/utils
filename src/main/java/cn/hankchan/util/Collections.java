@@ -1,6 +1,7 @@
 package cn.hankchan.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,56 +14,71 @@ import java.util.Map;
 public class Collections {
 
 	/**
+	 * 判断Map集合是否null或者空
+	 * @param map Map集合
+	 * @param <K> k
+	 * @param <V> v
+	 * @return 集合为null或者空，返回true。否则返回false
+	 */
+	public static <K, V> boolean isNullOrEmpty(Map<K, V> map) {
+		return map == null || map.isEmpty();
+	}
+	
+	/**
+	 * 判断Collection集合是否null或者空
+	 * @param collection Collection集合
+	 * @param <T> t
+	 * @return 集合为null或者空，返回true。否则返回false
+	 */
+	public static <T> boolean isNullOrEmpty(Collection<T> collection) {
+		return collection == null || collection.isEmpty();
+	}
+	
+	/**
 	 * 如果Map集合不为null，返回自身，否则返回空Map集合
-	 * @param obj obj
+	 * @param map map
 	 * @param <K> k
 	 * @param <V> v
 	 * @return 如果Map集合不为null，返回自身，否则返回空Map集合
 	 */
-	public static <K, V> Map<K, V> nullToEmpty(Map<K, V> obj) {
-		if(obj == null) {
-			return new HashMap<>();
-		}
-		return obj;
+	public static <K, V> Map<K, V> nullToEmpty(Map<K, V> map) {
+		return map == null ? new HashMap<>() : map;
 	}
 	
 	/**
 	 * 如果List集合不为null，返回自身，否则返回空List集合
-	 * @param obj obj
+	 * @param list list
 	 * @param <T> t
 	 * @return 如果List集合不为null，返回自身，否则返回空List集合
 	 */
-	public static <T> List<T> nullToEmpty(List<T> obj) {
-		if(obj == null) {
-			return new ArrayList<T>();
-		}
-		return obj;
+	public static <T> List<T> nullToEmpty(List<T> list) {
+		return list == null ? new ArrayList<>() : list;
 	}
 	
 	/**
 	 * 如果List集合不为空，返回自身，否则返回null
-	 * @param obj obj
+	 * @param list list
 	 * @param <T> t
 	 * @return 如果List集合不为空，返回自身，否则返回null
 	 */
-	public static <T> List<T> emptyToNull(List<T> obj) {
-		if(obj == null) {
+	public static <T> List<T> emptyToNull(List<T> list) {
+		if(list == null) {
 			return null;
 		}
-		return obj.isEmpty() ? null : obj;
+		return list.isEmpty() ? null : list;
 	}
 	
 	/**
 	 * 如果Map集合不为空，返回自身，否则返回null
-	 * @param obj obj
+	 * @param map map
 	 * @param <K> k
 	 * @param <V> v
 	 * @return 如果Map集合不为空，返回自身，否则返回null
 	 */
-	public static <K, V> Map<K, V> emptyToNull(Map<K, V> obj) {
-		if(obj == null) {
+	public static <K, V> Map<K, V> emptyToNull(Map<K, V> map) {
+		if(map == null) {
 			return null;
 		}
-		return obj.isEmpty() ? null : obj;
+		return map.isEmpty() ? null : map;
 	}
 }

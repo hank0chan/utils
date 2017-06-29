@@ -7,16 +7,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * Java JDK serialize utils
+ * Java JDK 序列化工具类
  * @author hankChan
  * 17:09:11 - 14 Apr 2017
  */
 public class JDKSerializableUtils {
 
 	/**
-	 * serialize
-	 * @param obj serialize target object
-	 * @return byte[] after serialize success. otherwise return null
+	 * 序列化
+	 * @param obj 序列化目标对象
+	 * @return byte[] 序列化成功返回byte数组，否则返回null
 	 */
 	public static byte[] serialize(Object obj) {
 		if(obj == null) {
@@ -38,9 +38,9 @@ public class JDKSerializableUtils {
 	}
 
 	/**
-	 * unserialize
-	 * @param bytes target byte[]
-	 * @return object after unserialize success. otherwise return null
+	 * 反序列化
+	 * @param bytes byte数组
+	 * @return object 反序列化成功返回对象，否则返回null
 	 */
 	public static Object unserialize(byte[] bytes) {
 		if(bytes == null) {
