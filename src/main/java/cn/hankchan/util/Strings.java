@@ -28,13 +28,16 @@ public class Strings {
 	}
 
 	/**
-	 * 检查字符串是否为空
-	 * @param str 字符串
-	 * @return 检查字符串是否为空
-	 */
-	public static boolean isEmpty(String str) {
-		return str.isEmpty() ? true : false;
-	}
+     * 检查字符串是否为空
+     * @param str 字符串
+     * @return 当字符串为空时返回true，否则false
+     */
+    public static boolean isEmpty(String str) {
+        if(str == null) {
+            return false;
+        }
+        return str.isEmpty();
+    }
 
 	/**
 	 * 如果str是null或者空字符串，返回true。否则返回false
