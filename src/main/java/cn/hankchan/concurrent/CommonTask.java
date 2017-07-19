@@ -6,7 +6,7 @@ package cn.hankchan.concurrent;
  * @author chings
  *         2017/7/14 0014.
  */
-public interface CommonServiceTask<IN, MID, OUT> extends Iterable<IN> {
+public interface CommonTask<IN, MID, OUT> extends Iterable<IN> {
 
     /**
      * 执行输入获得中间结果

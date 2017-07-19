@@ -17,8 +17,8 @@ public class ConcurrentTaskDemo {
         for(int i = 0; i < 100; i++) {
             lists.add(i + 1);
         }
-        AbstractCommonServiceTask<Integer, Integer, List<Integer>> task =
-                new AbstractCommonServiceTask<Integer, Integer, List<Integer>>() {
+        AbstractCommonTask<Integer, Integer, List<Integer>> task =
+                new AbstractCommonTask<Integer, Integer, List<Integer>>() {
             List<Integer> result = new ArrayList<>();
             @Override
             public Integer execute(Integer aLong) {
@@ -41,7 +41,7 @@ public class ConcurrentTaskDemo {
                 return lists.iterator();
             }
             /*
-            // 这是使用自定义的任务排序方式（直接调用任务接口：CommonServiceTask）
+            // 这是使用自定义的任务排序方式（直接调用任务接口：CommonTask）
             List<CommonTaskMiddle<Integer, Integer>> middles = new ArrayList<>();
             @Override
             public void gather(CommonTaskMiddle<Integer, Integer> taskMiddle) {
@@ -50,7 +50,7 @@ public class ConcurrentTaskDemo {
             }
             */
         };
-        CommonServiceTaskHandler handler = new CommonServiceTaskHandler();
+        CommonTaskHandler handler = new CommonTaskHandler();
         List<Integer> out = handler.execute(task);
         System.out.println("take:" + (System.currentTimeMillis() - startTime) + "ms");
         System.out.println(out);

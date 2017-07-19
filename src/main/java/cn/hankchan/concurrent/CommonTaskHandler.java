@@ -10,13 +10,13 @@ import java.util.concurrent.*;
  * @author chings
  *         2017/7/14 0014.
  */
-public class CommonServiceTaskHandler {
+public class CommonTaskHandler {
 
     public static final int availableProcessors = Runtime.getRuntime().availableProcessors();
 
     ExecutorService executor;
 
-    public CommonServiceTaskHandler() {
+    public CommonTaskHandler() {
         executor = Executors.newFixedThreadPool(availableProcessors);
     }
 
@@ -32,7 +32,7 @@ public class CommonServiceTaskHandler {
      * @param <OUT> 输出结果
      * @return 输出执行任务的结果
      */
-    public <IN, MID, OUT> OUT execute(final CommonServiceTask<IN, MID, OUT> task) {
+    public <IN, MID, OUT> OUT execute(final CommonTask<IN, MID, OUT> task) {
         try {
             CompletionService<CommonTaskMiddle<IN, MID>> completionService =
                     new ExecutorCompletionService<CommonTaskMiddle<IN, MID>>(executor);

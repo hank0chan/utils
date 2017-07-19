@@ -10,7 +10,7 @@ import java.util.List;
  * @author chings
  *         2017/7/14 0014.
  */
-public abstract class AbstractCommonServiceTask<IN, MID, OUT> implements CommonServiceTask<IN, MID, OUT> {
+public abstract class AbstractCommonTask<IN, MID, OUT> implements CommonTask<IN, MID, OUT> {
 
     protected List<CommonTaskMiddle<IN, MID>> taskMiddles;
 
