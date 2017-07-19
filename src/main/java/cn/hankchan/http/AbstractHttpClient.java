@@ -120,13 +120,13 @@ public abstract class AbstractHttpClient {
     /**
      * 发送JSON/RequestBody形式的POST请求
      * @param url 请求URL
-     * @param requestJsonStirng JSON格式的请求字符串
+     * @param requestJsonString JSON格式的请求字符串
      * @return JSON格式响应结果
      * @throws Exception exception
      */
-    public final String postByRequestBody(String url, String requestJsonStirng) throws Exception {
+    public final String postByRequestBody(String url, String requestJsonString) throws Exception {
         // 构建JSON格式的请求实体
-        StringEntity stringEntity = new StringEntity(requestJsonStirng);
+        StringEntity stringEntity = new StringEntity(requestJsonString);
         stringEntity.setContentEncoding("UTF-8");
         stringEntity.setContentType("application/json");
 
