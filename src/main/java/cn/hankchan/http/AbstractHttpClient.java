@@ -31,30 +31,18 @@ public abstract class AbstractHttpClient {
     private CloseableHttpClient httpClient;
     private PoolingHttpClientConnectionManager clientConnectionManager;
 
-    /**
-     * 默认初始化，通常情况下，推荐使用这种实现即可
-     */
     protected void init() {
         init(200, 20);
     }
 
-    /**
-     * 默认初始化
-     */
     protected void init(CloseableHttpClient httpClient) {
         this.httpClient = httpClient;
     }
 
-    /**
-     * 默认初始化
-     */
     protected void init(PoolingHttpClientConnectionManager clientConnectionManager) {
         httpClient = HttpClients.custom().setConnectionManager(clientConnectionManager).build();
     }
 
-    /**
-     * 自定义初始化
-     */
     protected void init(int maxTotal, int maxPerRoute) {
         clientConnectionManager = new PoolingHttpClientConnectionManager();
         clientConnectionManager.setMaxTotal(maxTotal);
@@ -100,7 +88,7 @@ public abstract class AbstractHttpClient {
      * 执行POST请求，获取响应结果
      * @param httpPost HttpPost请求对象
      * @return JSON字符串响应结果
-     * @throws Exception exception
+     * @throws IOException exception
      */
     public final String doPost(HttpPost httpPost) throws IOException {
 

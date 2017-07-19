@@ -33,7 +33,7 @@ public class TimeUtils {
 		 * 
 		 * @param string：
 		 *            日期字符串
-		 * @return
+		 * @return 日期对象
 		 */
 		public Date parse(String string) {
 			try {
@@ -48,7 +48,7 @@ public class TimeUtils {
 		 * 
 		 * @param date：
 		 *            日期对象
-		 * @return
+		 * @return 日期字符串
 		 */
 		public String format(Date date) {
 			return dateFormat.format(date);
@@ -61,7 +61,7 @@ public class TimeUtils {
 		 *            当前时间字符串
 		 * @param minutes：
 		 *            间隔的分钟数
-		 * @return
+		 * @return 日期字符串
 		 */
 		public String addMinutes(String string, int minutes) {
 			try {
@@ -79,7 +79,7 @@ public class TimeUtils {
 		 *            当前时间字符串
 		 * @param hours：
 		 *            间隔的小时数
-		 * @return
+		 * @return 日期字符串
 		 */
 		public String addHours(String string, int hours) {
 			try {
@@ -97,7 +97,7 @@ public class TimeUtils {
 		 *            当前时间字符串
 		 * @param days：
 		 *            间隔的天数
-		 * @return
+		 * @return 日期字符串
 		 */
 		public String addDays(String string, int days) {
 			try {
@@ -118,7 +118,7 @@ public class TimeUtils {
 		 *            当前时间字符串
 		 * @param month：
 		 *            间隔的月数
-		 * @return
+		 * @return 日期字符串
 		 */
 		public String addMonths(String string, int month) {
 			try {
@@ -139,7 +139,7 @@ public class TimeUtils {
 		 *            当前时间字符串
 		 * @param hours：
 		 *            间隔的小时数
-		 * @return
+		 * @return 日期字符串
 		 */
 		public Calendar addHoursAsCalendar(String string, int hours) {
 			try {
@@ -179,7 +179,7 @@ public class TimeUtils {
 		 * 
 		 * @param string:
 		 *            当前时间字符串
-		 * @return
+		 * @return 日期字符串
 		 */
 		public String toISO8601(String string) {
 			try {

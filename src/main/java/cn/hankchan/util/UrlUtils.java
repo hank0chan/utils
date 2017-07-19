@@ -12,8 +12,8 @@ import java.util.Map;
 public class UrlUtils {
 
     /**
-     * 拼接Url和请求参数：http://localhost:8080/api?a=1&b=2
-      * @param url url
+     * 拼接Url和请求参数
+     * @param url url
      * @param params 请求参数集合
      * @return 包含请求参数的完整url
      */
