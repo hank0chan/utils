@@ -2,6 +2,10 @@
 
 一个简单的个人工具类项目，主要提供了一些基于原有JDK的封装工具类，提高开发效率。
 
+## JavaDoc
+
+文档地址：http://api.hankchan.cn/utils
+
 ## 使用
 
 引入以下maven依赖即可使用：
