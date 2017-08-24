@@ -1,7 +1,7 @@
 package cn.hankchan.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -12,8 +12,7 @@ import java.io.IOException;
  */
 public class JSONParseUtils {
 
-    private static ObjectMapper mapper;
-
+    private static Gson gson = new Gson();
     /**
      * 将对象转换为JSON格式的字符串
      * @param obj 目标对象
@@ -23,16 +22,7 @@ public class JSONParseUtils {
         if(obj == null) {
             return null;
         }
-        if(mapper == null) {
-            mapper = new ObjectMapper();
-        }
-        String result = null;
-        try {
-            result = mapper.writeValueAsString(obj);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return gson.toJson(obj);
     }
 
     /**
@@ -46,16 +36,18 @@ public class JSONParseUtils {
         if(Strings.isNullOrEmpty(jsonString)) {
             return null;
         }
-        if(mapper == null) {
-            mapper = new ObjectMapper();
-        }
-        T result = null;
-        try {
-            result = mapper.readValue(jsonString, resultType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return gson.fromJson(jsonString, resultType);
+    }
+
+    /**
+     * 将JSON字符串还原为泛型的目标对象
+     * @param jsonString JSON字符串
+     * @param typeToken 泛型目标对象包装类型
+     * @param <T> 泛型
+     * @return 结果对象
+     */
+    public static <T> T json2GenericObject(String jsonString,TypeToken<T> typeToken) {
+        return gson.fromJson(jsonString, typeToken.getType());
     }
 
 }
