@@ -25,7 +25,7 @@ import java.util.Optional;
 
 /**
  * 公共抽象的Http连接客户端
- * <h>基于连接池实现</h>
+ * <p>基于连接池实现</p>
  * @author hankChan
  *         2017/7/11 0011.
  */
@@ -88,7 +88,7 @@ public abstract class AbstractHttpClient {
      * 执行POST请求，获取响应结果
      * @param httpPost HttpPost请求对象
      * @return JSON字符串响应结果
-     * @throws Exception exception
+     * @throws IOException exception
      */
     public final String doPost(HttpPost httpPost) throws IOException {
 
@@ -104,7 +104,7 @@ public abstract class AbstractHttpClient {
      * @param httpPost HttpPost请求对象
      * @param header 请求头内容
      * @return JSON字符串响应结果
-     * @throws Exception exception
+     * @throws IOException exception
      */
     public final String doPost(HttpPost httpPost, Map<String, String> header) throws IOException {
         if(!(Optional.ofNullable(header).orElse(new HashMap<>()).isEmpty())) {
@@ -170,7 +170,7 @@ public abstract class AbstractHttpClient {
      * @param url 请求URL
      * @param params 请求参数集合
      * @return JSON字符串响应结果
-     * @throws Exception exception
+     * @throws IOException exception
      */
     public final String getByUrlEncoded(String url, Map<String, String> params) throws IOException {
         // 拼接URL和请求参数
@@ -192,7 +192,7 @@ public abstract class AbstractHttpClient {
      * @throws Exception exception
      */
     public final String postByFormData(String url, Map<String, String> params,
-                                       String bytesKey, byte[] bytes) throws Exception {
+            String bytesKey, byte[] bytes) throws Exception {
         // 构建请求表单
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         for(Map.Entry<String, String> entry : params.entrySet()) {

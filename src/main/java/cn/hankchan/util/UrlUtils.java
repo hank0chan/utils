@@ -101,7 +101,7 @@ public class UrlUtils {
     /**
      * 拼接key value
      * @param params 参数集合
-     * @return 返回空字符串或者正确的k1=v1&k2=v2形式的字符串
+     * @return 返回空字符串或者正确形式的url拼接参数格式的字符串
      */
     public static String appendKeyAndValues(Map<String, String> params) {
         if(params == null || params.isEmpty()) {

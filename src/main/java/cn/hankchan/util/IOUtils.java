@@ -6,9 +6,8 @@ import java.io.*;
 
 /**
  * 流操作工具类
- * @author Administrator
- * @description io工具类
- * @date   2017年8月10日
+ * @author hankChan
+ *    2017年8月10日
  */
 public class IOUtils {
 
@@ -25,6 +24,7 @@ public class IOUtils {
 	 * @param bytes 二进制流
 	 * @param fileName 文件全路径名
 	 * @return 成功返回File，否则null
+	 * @throws IOException exception
 	 */
 	public static File bytes2File(byte[] bytes, String fileName) throws IOException {
 		File file = new File(fileName);

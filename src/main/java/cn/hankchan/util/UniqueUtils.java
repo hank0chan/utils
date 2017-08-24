@@ -5,7 +5,7 @@ import java.util.Properties;
 
 /**
  * 全局唯一ID生成工具类
- * <h>需要通过读取根目录下的配置文件global.properties，获取agent.workerId及agent.dataCenterId的值。如下：</h>
+ * <p>需要通过读取根目录下的配置文件global.properties，获取agent.workerId及agent.dataCenterId的值。如下：</p>
  * <p>agent.workerId=0</p>
  * <p>agent.dataCenterId=0</p>
  * 这里两个参数的取值返回都是0-31，如果没有读取到该指定配置文件，默认的该两个值都为0

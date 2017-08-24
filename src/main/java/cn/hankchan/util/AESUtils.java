@@ -69,7 +69,7 @@ public class AESUtils {
      * @param content 文本
      * @param password 密码
      * @return 二进制解密结果
-     * @throws Exception
+     * @throws Exception exception
      */
     public static byte[] encryptByte(String content, String password) throws Exception {
         KeyGenerator keyGenerator = KeyGenerator.getInstance(AES);

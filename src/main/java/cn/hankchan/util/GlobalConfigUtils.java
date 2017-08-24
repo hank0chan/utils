@@ -7,7 +7,7 @@ import java.util.Properties;
 
 /**
  * 全局配置文件读取工具类（单例）
- * <h>配置文件为根目录下的global.properties</h>
+ * <p>配置文件为根目录下的global.properties</p>
  * @author hankChan
  *         2017/8/11 0011.
  */
@@ -17,7 +17,7 @@ public class GlobalConfigUtils {
 
     /**
      * 获取所有配置信息
-     * @return
+     * @return 配置集合
      */
     public Map<String, String> getConfigs() {
         return configs;
