@@ -1,6 +1,6 @@
 package cn.hankchan.util;
 
-import java.io.IOException;
+import java.lang.Exception;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -68,7 +68,7 @@ public class GlobalConfigUtils {
                 // 载入到configs中
                 configs.put(keys.toString(), value);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
