@@ -9,8 +9,6 @@ import cn.hankchan.util.Strings;
  */
 public class HexUtils {
 
-
-
     /**
      * 16进制字符串转为二进制byte
      * @param hexString 16进制字符串

@@ -1,6 +1,6 @@
 package cn.hankchan.util;
 
-import java.io.IOException;
+import java.lang.Exception;
 import java.util.Properties;
 
 /**
@@ -26,7 +26,7 @@ public class UniqueUtils {
             String dataCenterIdProps = properties.getProperty("agent.dataCenterId");
             workerId = Strings.isNullOrEmpty(workerIdProps) ? 0 : Integer.valueOf(workerIdProps);
             dataCenterId = Strings.isNullOrEmpty(dataCenterIdProps) ? 0 : Integer.valueOf(dataCenterIdProps);
-        } catch (IOException e) {
+        } catch (Exception e) {
             workerId = 0;
             dataCenterId = 0;
         }

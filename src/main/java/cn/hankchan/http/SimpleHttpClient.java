@@ -1,14 +1,11 @@
 package cn.hankchan.http;
 
-import cn.hankchan.util.Strings;
 import cn.hankchan.util.UrlUtils;
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.routing.HttpRoute;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -16,7 +13,6 @@ import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
@@ -26,45 +22,16 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * 公共抽象的Http连接客户端
- * <p>基于连接池实现</p>
+ * 简单的HttpClient客户端
  * @author hankChan
- *         2017/7/11 0011.
+ *         27/09/2017.
  */
-public abstract class AbstractHttpClient {
+public class SimpleHttpClient {
 
-    private static CloseableHttpClient httpClient;
-    private static PoolingHttpClientConnectionManager clientConnectionManager;
-    private static Integer maxTotal;
-    private static Integer defaultMaxPerRoute;
-    private static Integer port;
-    private static String host;
-    private static Integer maxPerRoute;
+    private CloseableHttpClient httpClient;
 
-    static {
-        clientConnectionManager = new PoolingHttpClientConnectionManager();
-        clientConnectionManager.setMaxTotal(Optional.ofNullable(maxTotal).orElse(2048));
-        clientConnectionManager.setDefaultMaxPerRoute(Optional.ofNullable(defaultMaxPerRoute).orElse(50));
-        HttpHost httpHost = new HttpHost(Optional.ofNullable(host).orElse("localhost"),
-                Optional.ofNullable(port).orElse(58888));
-        clientConnectionManager.setMaxPerRoute(new HttpRoute(httpHost),
-                Optional.ofNullable(maxPerRoute).orElse(100));
-        httpClient = HttpClients.custom().setConnectionManager(clientConnectionManager).build();
-    }
-
-    public AbstractHttpClient() {}
-
-    public AbstractHttpClient(Integer port) {
-        this.port = port;
-    }
-
-    public AbstractHttpClient(String host, Integer port, Integer maxTotal,
-            Integer maxPerRoute, Integer defaultMaxPerRoute) {
-        this.host = host;
-        this.port = port;
-        this.maxTotal = maxTotal;
-        this.maxPerRoute = maxPerRoute;
-        this.defaultMaxPerRoute = defaultMaxPerRoute;
+    public SimpleHttpClient() {
+        httpClient = HttpClients.createDefault();
     }
 
     /**
@@ -268,14 +235,11 @@ public abstract class AbstractHttpClient {
                     new StringBody(entry.getValue(), ContentType.create(
                             "multipart/form-data", "UTF-8")));
         }
-        if(!Strings.isNullOrEmpty(bytesKey) && bytes != null) {
-            // 加入需要的byte二进制流
-            multipartEntityBuilder.addPart(bytesKey,
-                    // 修复表单请求时，中文编码问题导致的请求参数无法被服务器端解析的问题  --hankchan
-                    new ByteArrayBody(bytes, ContentType.create(
-                            "multipart/form-data", "UTF-8"), ""));
-
-        }
+        // 加入需要的byte二进制流
+        multipartEntityBuilder.addPart(bytesKey,
+                // 修复表单请求时，中文编码问题导致的请求参数无法被服务器端解析的问题  --hankchan
+                new ByteArrayBody(bytes, ContentType.create(
+                        "multipart/form-data", "UTF-8"), ""));
         // 构建请求参数实体
         HttpEntity requestEntity = multipartEntityBuilder.build();
         // 构建POST请求
@@ -309,7 +273,19 @@ public abstract class AbstractHttpClient {
      */
     public final String postByFormData(String url, Map<String, String> params,
             Map<String, String> header) throws Exception {
-        return postByFormData(url, params, header, null, null);
+        // 构建请求表单
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        for(Map.Entry<String, String> entry : params.entrySet()) {
+            multipartEntityBuilder.addPart(entry.getKey(),
+                    new StringBody(entry.getValue(), ContentType.MULTIPART_FORM_DATA));
+        }
+        // 构建请求参数实体
+        HttpEntity requestEntity = multipartEntityBuilder.build();
+        // 构建POST请求
+        HttpPost httpPost = new HttpPost(url);
+        httpPost.setEntity(requestEntity);
+        // 执行POST
+        return doPost(httpPost, header);
     }
 
     /**

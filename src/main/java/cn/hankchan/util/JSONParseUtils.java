@@ -1,9 +1,7 @@
 package cn.hankchan.util;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-
-import java.io.IOException;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * JSON转换工具类

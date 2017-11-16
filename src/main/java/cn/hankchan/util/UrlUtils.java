@@ -2,6 +2,7 @@ package cn.hankchan.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -15,6 +16,35 @@ import java.util.regex.Pattern;
 public class UrlUtils {
 
     static Pattern pattern = Pattern.compile("\\S*[?]\\S*");
+
+    /**
+     * 对参数值执行URL编码，默认UTF-8
+     * @param params 请求参数集合
+     * @return 编码成功返回集合，否则返回null
+     */
+    public static Map<String, String> urlEncoded(Map<String, String> params) {
+        return urlEncoded(params, "UTF-8");
+    }
+
+    /**
+     * 对参数值执行URL编码
+     * @param params 请求参数集合
+     * @param charset 编码格式
+     * @return 编码成功返回集合，否则返回null
+     */
+    public static Map<String, String> urlEncoded(Map<String, String> params, String charset) {
+        Map<String, String> result = new HashMap<>();
+        for(Map.Entry<String, String> entry : params.entrySet()) {
+            try {
+                String value = URLEncoder.encode(entry.getValue(), charset);
+                result.put(entry.getKey(), value);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return result;
+    }
 
     /**
      * 从url中获取文件后缀名
@@ -142,21 +172,6 @@ public class UrlUtils {
         }
         String keyValuePairs = appendKeyAndValues(params);
         return builder.append(keyValuePairs).toString();
-        /*
-        for(Map.Entry<String, String> entry : params.entrySet()) {
-            if(Strings.areNotEmpty(entry.getKey(), entry.getValue())) {
-                // 最终URL结尾是&符号，需要去除
-                try {
-                    builder.append(entry.getKey()).append("=")
-                            .append(URLEncoder.encode(entry.getValue(), "UTF-8")).append("&");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        String fullUrl = builder.toString();
-        return fullUrl.length() > 0 ? fullUrl.substring(0, fullUrl.length() - 1) : null;
-        */
     }
 
     /**

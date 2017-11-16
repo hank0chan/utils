@@ -29,12 +29,12 @@ public class SignatureUtils {
     private SignatureUtils() {}
 
     /**
-     * 对需要将urlPath加入签名字符串的请求参数进行签名
+     * 根据签名算法对需要将urlPath加入签名字符串的请求参数进行签名
      * @param urlPath urlPath
      * @param params 请求参数集合
      * @param secret 密钥
      * @param method 签名方法，目前支持HMAC_SHA1
-     * @return 大写的签名结果字符串
+     * @return 大写的十六进制签名结果字符串
      */
     public static String signParamsWithUrlPath(String urlPath, Map<String, String> params,
             String secret, SignMethod method) {
@@ -63,11 +63,11 @@ public class SignatureUtils {
     }
 
     /**
-     * 对请求参数进行签名摘要
+     * 根据签名算法对请求参数进行签名摘要
      * @param params 请求参数
      * @param secret 密钥
      * @param method 签名摘要算法
-     * @return 签名结果，如果不需要签名，返回null
+     * @return 大写的十六进制签名结果字符串，如果不需要签名，返回null
      */
     public static String signParams(Map<String, String> params, String secret, SignMethod method) {
 

@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.hankchan</groupId>
 	<artifactId>utils</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5</version>
 	<name>utils</name>
 	<description>
 		the Utils project is a general utils base on jdk 1.8 for java developer

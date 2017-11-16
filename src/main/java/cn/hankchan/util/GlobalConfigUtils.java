@@ -1,6 +1,6 @@
 package cn.hankchan.util;
 
-import java.lang.Exception;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;

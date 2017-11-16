@@ -2,6 +2,10 @@
 
 一个简单的个人工具类项目，主要提供了一些基于原有JDK的封装工具类，提高开发效率。
 
+## 主要功能
+
+提供了包括：JSON处理，Http请求，编码解码，字符串校验，参数签名处理，序列化及反序列化，分布式唯一ID生成，Date时间处理，IO，集合以及基于java.util.concurrent的并发处理框架等功能
+
 ## JavaDoc
 
 文档地址：http://api.hankchan.cn/utils
